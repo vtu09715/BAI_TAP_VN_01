@@ -90,9 +90,12 @@ Các kỹ thuật kinh điển:
 Tấn công Kasiski: Tìm khoảng cách lặp của chuỗi chữ cái lặp để ước lượng độ dài khóa.
 Chỉ số trùng hợp (Index of Coincidence): Ước lượng độ dài khóa dựa vào thống kê.
 Khi biết độ dài khóa n, tách bản mã thành n dãy, mỗi dãy là Caesar cipher ⇒ dùng phân tích tần suất cho từng dãy.
+
 # Chương trình 
 <img width="681" height="370" alt="image" src="https://github.com/user-attachments/assets/453e5239-412f-4ede-8f8d-c95f352a94a8" />
+
 # Tên gọi là Playfair Cipher
+
 # Thuật toán mã hoá & giải mã
 a. Chuẩn bị bảng khóa (5×5)
 Chọn từ khóa (ví dụ: MONARCHY).
@@ -114,9 +117,23 @@ Với từng cặp (A,B):
 Cùng hàng: Thay mỗi chữ bằng chữ bên phải (vòng lại nếu cuối hàng).
 Cùng cột: Thay mỗi chữ bằng chữ bên dưới (vòng lại nếu cuối cột).
 Khác hàng/cột: Mỗi chữ thay bằng chữ ở cùng hàng nhưng ở cột của chữ kia (tạo hình chữ nhật).
+
 # c. Giải mã
 Làm ngược: nếu cùng hàng lấy bên trái, cùng cột lấy bên trên, chữ nhật đổi cột như trên.
 
+# Không gian khóa
+<img width="614" height="85" alt="image" src="https://github.com/user-attachments/assets/8d3b0d69-5d22-447a-93b4-03f5aab8c0a1" />
+# Cách phá mã (không cần khóa)
+Không thể brute-force toàn bộ 25!
+Tuy nhiên vẫn bị phá bằng:
+Phân tích tần suất digraph (cặp chữ).
+Phương pháp Friedman/Kasiski mở rộng cho digraph.
+Tấn công chọn bản rõ/bản mã.
+So với Caesar, Affine, Vigenère, Playfair mạnh hơn nhưng vẫn không đủ an toàn hiện đại.
+
+# Chương trình 
+
+<img width="673" height="411" alt="image" src="https://github.com/user-attachments/assets/03dc3e8f-9809-4ecd-a35e-117a1dd5ceed" />
 
 
 
