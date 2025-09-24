@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Classical Ciphers Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Demo mã hóa cổ điển của VŨ ĐỨC TÚ</h1>
+  <div class="tabs">
+    <button data-tab="caesar" class="active">Caesar</button>
+    <button data-tab="affine">Affine</button>
+    <button data-tab="trans">Transposition</button>
+    <button data-tab="vigenere">Vigenère</button>
+    <button data-tab="playfair">Playfair</button>
+  </div>
+
+  <div id="caesar" class="tab active">
+    <label>Plaintext</label><textarea id="c_plain"></textarea>
+    <label>Khóa k</label><input id="c_k" type="number" value="3">
+    <div class="actions">
+      <button onclick="caesarEncrypt()">Encrypt</button>
+      <button onclick="caesarDecrypt()">Decrypt</button>
+    </div>
+    <label>Output</label><textarea id="c_out" readonly></textarea>
+  </div>
+
+  <div id="affine" class="tab">
+    <label>Plaintext</label><textarea id="a_plain"></textarea>
+    <label>a (gcd(a,26)=1)</label><input id="a_a" type="number" value="5">
+    <label>b</label><input id="a_b" type="number" value="8">
+    <div class="actions">
+      <button onclick="affineEncrypt()">Encrypt</button>
+      <button onclick="affineDecrypt()">Decrypt</button>
+    </div>
+    <label>Output</label><textarea id="a_out" readonly></textarea>
+  </div>
+
+  <div id="trans" class="tab">
+    <label>Plaintext</label><textarea id="t_plain"></textarea>
+    <label>Key (ví dụ: ZEBRAS)</label><input id="t_key" type="text" value="ZEBRAS">
+    <div class="actions">
+      <button onclick="transEncrypt()">Encrypt</button>
+      <button onclick="transDecrypt()">Decrypt</button>
+    </div>
+    <label>Output</label><textarea id="t_out" readonly></textarea>
+  </div>
+
+  <div id="vigenere" class="tab">
+    <label>Plaintext</label><textarea id="v_plain"></textarea>
+    <label>Key</label><input id="v_key" type="text" value="KEY">
+    <div class="actions">
+      <button onclick="vigEncrypt()">Encrypt</button>
+      <button onclick="vigDecrypt()">Decrypt</button>
+    </div>
+    <label>Output</label><textarea id="v_out" readonly></textarea>
+  </div>
+
+  <div id="playfair" class="tab">
+    <label>Plaintext</label><textarea id="p_plain"></textarea>
+    <label>Keyword</label><input id="p_key" type="text" value="MONARCHY">
+    <div class="actions">
+      <button onclick="playEncrypt()">Encrypt</button>
+      <button onclick="playDecrypt()">Decrypt</button>
+    </div>
+    <label>Output</label><textarea id="p_out" readonly></textarea>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
