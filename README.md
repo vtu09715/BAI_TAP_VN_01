@@ -36,7 +36,7 @@ P: số của ký tự gốc (0–25)
 C: số ký tự mã hóa
 a, b: khóa
 # Thuật toán giải mã 
-<img width="654" height="179" alt="image" src="https://github.com/user-attachments/assets/830b515e-a09c-44c4-ba6a-ca96d68a8811" />
+<img width="654" height="179" alt="image" src="https://github.com/user-attachments/assets/830b515e-a09c-44c4-ba6a-ca96d68a8811" /> </p>
 # Không gian khoá 
 Số giá trị a hợp lệ: các số 0–25 mà gcd(a,26)=1
 → Tập {1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25} ⇒ 12 giá trị.
@@ -51,7 +51,7 @@ Phân tích tần suất: Giống Caesar, dựa vào tần suất chữ cái tro
 <img width="565" height="288" alt="image" src="https://github.com/user-attachments/assets/76f609f8-6800-4787-97f7-d66f02ce9fe3" />
 
 # chương trình 
-<img width="884" height="446" alt="image" src="https://github.com/user-attachments/assets/dbbadb1c-b7f4-4ec1-9b73-011fa997535a" />
+<img width="884" height="446" alt="image" src="https://github.com/user-attachments/assets/dbbadb1c-b7f4-4ec1-9b73-011fa997535a" /> </p>
 Chọn a = 5, b = 8
 
 Bản rõ: AFFINE
