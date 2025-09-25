@@ -152,7 +152,6 @@ Tấn công chọn bản rõ/bản mã.
 So với Caesar, Affine, Vigenère, Playfair mạnh hơn nhưng vẫn không đủ an toàn hiện đại.
 # Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
 
-
 <img width="547" height="209" alt="image" src="https://github.com/user-attachments/assets/fcf91901-e8f8-4d55-8c8a-bad9b091e234" />
 
 # Chương trình 
