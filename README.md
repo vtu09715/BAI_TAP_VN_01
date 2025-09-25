@@ -96,11 +96,11 @@ Tấn công kết hợp: Suy đoán độ dài khóa, sau đó thử tất cả 
 
 # Tên Gọi Là Vigenère Cipher
 # Thuật toán mã hoá 
-<img width="648" height="243" alt="image" src="https://github.com/user-attachments/assets/263da424-2e86-4036-8e4f-e82cc52d5452" />
-# Thuật toán giải mã 
-<img width="329" height="85" alt="image" src="https://github.com/user-attachments/assets/2c11eb0c-737e-4f46-8a9e-c56c8962b009" />
-# Không gian khoá 
-<img width="734" height="83" alt="image" src="https://github.com/user-attachments/assets/e75d9040-f42e-4f6b-8683-63b199c7dc8f" />
+<img width="648" height="243" alt="image" src="https://github.com/user-attachments/assets/263da424-2e86-4036-8e4f-e82cc52d5452" /> </p>
+# Thuật toán giải mã </p>
+<img width="329" height="85" alt="image" src="https://github.com/user-attachments/assets/2c11eb0c-737e-4f46-8a9e-c56c8962b009" /> </p> 
+# Không gian khoá </p>
+<img width="734" height="83" alt="image" src="https://github.com/user-attachments/assets/e75d9040-f42e-4f6b-8683-63b199c7dc8f" /> </p>
 # Cách phá mã (không cần khóa)
 Dù lớn hơn Caesar/Affine, Vigenère không an toàn hiện đại.
 Các kỹ thuật kinh điển:
@@ -116,12 +116,12 @@ Khi biết độ dài khóa n, tách bản mã thành n dãy, mỗi dãy là Cae
 
 # Tên gọi là Playfair Cipher
 
-# Thuật toán mã hoá & giải mã
+# Thuật toán mã hoá & giải mã</p>
 a. Chuẩn bị bảng khóa (5×5)
 Chọn từ khóa (ví dụ: MONARCHY).
 Viết từ khóa vào bảng 5x5, loại bỏ chữ trùng, sau đó điền các chữ cái còn lại theo thứ tự alphabet.
 Gộp I và J chung một ô (hoặc Q tùy biến).
-Ví dụ khóa MONARCHY:
+Ví dụ khóa MONARCHY:</p>
 
 M O N A R
 C H Y B D
@@ -129,7 +129,7 @@ E F G I/J K
 L P Q S T
 U V W X Z
 
- # b. Quy tắc mã hoá
+ # b. Quy tắc mã hoá</p>
 Chia bản rõ thành cặp chữ cái (digraph):
 Nếu cặp trùng (ví dụ “LL”), chèn X (hoặc Q) giữa: “LX L…”.
 Nếu còn lẻ, thêm X cuối.
@@ -142,7 +142,7 @@ Khác hàng/cột: Mỗi chữ thay bằng chữ ở cùng hàng nhưng ở cộ
 Làm ngược: nếu cùng hàng lấy bên trái, cùng cột lấy bên trên, chữ nhật đổi cột như trên.
 
 # Không gian khóa
-<img width="614" height="85" alt="image" src="https://github.com/user-attachments/assets/8d3b0d69-5d22-447a-93b4-03f5aab8c0a1" />
+<img width="614" height="85" alt="image" src="https://github.com/user-attachments/assets/8d3b0d69-5d22-447a-93b4-03f5aab8c0a1" /> </p>
 # Cách phá mã (không cần khóa)
 Không thể brute-force toàn bộ 25!
 Tuy nhiên vẫn bị phá bằng:
@@ -152,11 +152,11 @@ Tấn công chọn bản rõ/bản mã.
 So với Caesar, Affine, Vigenère, Playfair mạnh hơn nhưng vẫn không đủ an toàn hiện đại.
 # Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
 
-<img width="547" height="209" alt="image" src="https://github.com/user-attachments/assets/fcf91901-e8f8-4d55-8c8a-bad9b091e234" />
+<img width="547" height="209" alt="image" src="https://github.com/user-attachments/assets/fcf91901-e8f8-4d55-8c8a-bad9b091e234" /> </p>
 
 # Chương trình 
 
-<img width="673" height="411" alt="image" src="https://github.com/user-attachments/assets/03dc3e8f-9809-4ecd-a35e-117a1dd5ceed" />
+<img width="673" height="411" alt="image" src="https://github.com/user-attachments/assets/03dc3e8f-9809-4ecd-a35e-117a1dd5ceed" /> </p>
 
 
 
