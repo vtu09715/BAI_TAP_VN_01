@@ -7,19 +7,19 @@ C=(P+k)mod26
 P: số của ký tự gốc.
 k: khóa (số dịch chuyển, 0–25).
 C: số của ký tự đã mã hoá.
-# Thuật toán giải mã 
+## Thuật toán giải mã 
 <img width="667" height="102" alt="image" src="https://github.com/user-attachments/assets/12a048cb-3b15-4435-a5f0-ad814625bf5f" />
-# Không Gian Khoá 
+## Không Gian Khoá 
 Khóa k là một số nguyên từ 0 đến 25 (thường loại trừ 0 vì không mã hóa gì).
 ⇒ Kích thước không gian khoá: 26 khả năng (thực tế 25 hữu ích).
-# Cách phá mã( không cần khoá) 
+## Cách phá mã( không cần khoá) 
 Do không gian khoá rất nhỏ, có thể brute-force:
 Thử tất cả 26 giá trị k.
 Giải mã bản mã với từng k.
 Đọc ra kết quả; bản rõ đúng sẽ xuất hiện ngay.
 Ngoài ra:
 Phân tích tần suất: Trong tiếng Anh, chữ E thường xuất hiện nhiều nhất. So sánh tần suất ký tự của bản mã với bảng tần suất ngôn ngữ để suy ra k.
-# Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
+## Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
 // caesar.cpp
 #include <iostream>
 #include <string>
