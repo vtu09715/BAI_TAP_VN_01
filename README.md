@@ -12,7 +12,7 @@ C: số của ký tự đã mã hoá.
 
 ## Thuật toán giải mã 
 <img width="667" height="102" alt="image" src="https://github.com/user-attachments/assets/12a048cb-3b15-4435-a5f0-ad814625bf5f" />
-## Không Gian Khoá 
+## Không gian khoá 
 Khóa k là một số nguyên từ 0 đến 25 (thường loại trừ 0 vì không mã hóa gì).
 ⇒ Kích thước không gian khoá: 26 khả năng (thực tế 25 hữu ích).
 ## Cách phá mã( không cần khoá) 
@@ -84,6 +84,57 @@ Brute force: Thử 312 cặp (a,b) ⇒ dễ dàng với máy tính.
 Phân tích tần suất: Giống Caesar, dựa vào tần suất chữ cái trong ngôn ngữ.
 
 # Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
+// affine.cpp
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int modInv(int a, int m){
+    a %= m;
+    for(int x=1;x<m;x++) if((a*x)%m==1) return x;
+    return -1;
+}
+
+string norm(const string &s){
+    string r;
+    for(char c: s) if(isalpha((unsigned char)c)) r+= toupper(c);
+    return r;
+}
+
+string encryptAffine(const string &plain, int a, int b){
+    string p = norm(plain);
+    string out;
+    for(char c: p){
+        out += char((a*(c-'A') + b)%26 + 'A');
+    }
+    return out;
+}
+
+string decryptAffine(const string &cipher, int a, int b){
+    int inv = modInv(a,26);
+    string c = norm(cipher), out;
+    for(char ch: c){
+        int val = (inv * ((ch-'A') - b + 26)) % 26;
+        out += char(val + 'A');
+    }
+    return out;
+}
+
+int main(){
+    cout << "Affine Cipher\nNhap plaintext: ";
+    string s; getline(cin, s);
+    cout << "Nhập a (gcd(a,26)=1): "; int a; cin >> a;
+    cout << "Nhập b (0-25): "; int b; cin >> b;
+    int inv = modInv(a,26);
+    if(inv==-1){ cout<<"a khong co nghich dao mod26. Thoat.\n"; return 0;}
+    string enc = encryptAffine(s,a,b);
+    cout << "Encrypted: " << enc << "\n";
+    cout << "Decrypted: " << decryptAffine(enc,a,b) << "\n";
+    return 0;
+}
+
+<img width="565" height="288" alt="image" src="https://github.com/user-attachments/assets/76f609f8-6800-4787-97f7-d66f02ce9fe3" />
 
 # chương trình 
 <img width="884" height="446" alt="image" src="https://github.com/user-attachments/assets/dbbadb1c-b7f4-4ec1-9b73-011fa997535a" />
@@ -122,6 +173,75 @@ Phân tích tần suất: Vì không thay đổi ký tự, tần suất giống 
 Brute force: Thử mọi hoán vị n! (khi n nhỏ).
 Phân tích mẫu: Tìm khoảng cách lặp của các cụm chữ, suy ra số cột/chu kỳ.
 Tấn công kết hợp: Suy đoán độ dài khóa, sau đó thử tất cả hoán vị.
+# Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
+// transposition.cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+string norm(const string &s){
+    string r;
+    for(char c: s) if(isalpha((unsigned char)c)) r+= toupper(c);
+    return r;
+}
+
+string encryptColumnar(const string &plain, const string &key){
+    string p = norm(plain);
+    int cols = key.size();
+    int rows = (p.size() + cols - 1) / cols;
+    // pad with X
+    while((int)p.size() < rows*cols) p += 'X';
+    // build matrix
+    vector<string> mat(rows, string(cols,'X'));
+    int idx=0;
+    for(int r=0;r<rows;r++){
+        for(int c=0;c<cols;c++){
+            mat[r][c] = p[idx++];
+        }
+    }
+    // get order
+    vector<pair<char,int>> order;
+    for(int i=0;i<cols;i++) order.push_back({key[i], i});
+    sort(order.begin(), order.end());
+    string out;
+    for(auto &pr: order){
+        int c = pr.second;
+        for(int r=0;r<rows;r++) out += mat[r][c];
+    }
+    return out;
+}
+
+string decryptColumnar(const string &cipher, const string &key){
+    int cols = key.size();
+    int rows = cipher.size() / cols;
+    vector<pair<char,int>> order;
+    for(int i=0;i<cols;i++) order.push_back({key[i], i});
+    sort(order.begin(), order.end());
+    vector<string> mat(rows, string(cols,' '));
+    int idx = 0;
+    for(auto &pr: order){
+        int c = pr.second;
+        for(int r=0;r<rows;r++){
+            mat[r][c] = cipher[idx++];
+        }
+    }
+    string out;
+    for(int r=0;r<rows;r++) for(int c=0;c<cols;c++) out += mat[r][c];
+    return out;
+}
+
+int main(){
+    cout << "Columnar Transposition\nPlaintext: ";
+    string s; getline(cin,s);
+    cout << "Key (ZEBRAS): ";
+    string k; getline(cin,k);
+    string enc = encryptColumnar(s,k);
+    cout << "Encrypted: " << enc << "\n";
+    cout << "Decrypted: " << decryptColumnar(enc,k) << "\n";
+    return 0;
+}
+
+<img width="524" height="218" alt="image" src="https://github.com/user-attachments/assets/35679d99-b253-4e3f-aca4-4c8eb3ad14bb" />
+
 # Chương trình 
 <img width="713" height="379" alt="image" src="https://github.com/user-attachments/assets/adf441f4-6eef-4305-9017-6a0d57d37557" />
 
@@ -138,6 +258,49 @@ Các kỹ thuật kinh điển:
 Tấn công Kasiski: Tìm khoảng cách lặp của chuỗi chữ cái lặp để ước lượng độ dài khóa.
 Chỉ số trùng hợp (Index of Coincidence): Ước lượng độ dài khóa dựa vào thống kê.
 Khi biết độ dài khóa n, tách bản mã thành n dãy, mỗi dãy là Caesar cipher ⇒ dùng phân tích tần suất cho từng dãy.
+# Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
+// vigenere.cpp
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+string norm(const string &s){ string r; for(char c:s) if(isalpha((unsigned char)c)) r+= toupper(c); return r; }
+
+string expandKey(const string &key, int n){
+    string k = norm(key);
+    string out;
+    for(int i=0;i<n;i++) out += k[i % k.size()];
+    return out;
+}
+
+string encryptVigenere(const string &plain, const string &key){
+    string p = norm(plain), k = expandKey(key, p.size()), out;
+    for(int i=0;i<(int)p.size();i++){
+        out += char((p[i]-'A' + (k[i]-'A'))%26 + 'A');
+    }
+    return out;
+}
+
+string decryptVigenere(const string &cipher, const string &key){
+    string c = norm(cipher), k = expandKey(key, c.size()), out;
+    for(int i=0;i<(int)c.size();i++){
+        out += char((c[i]-'A' - (k[i]-'A') + 26)%26 + 'A');
+    }
+    return out;
+}
+
+int main(){
+    cout << "Vigenere Cipher\nPlaintext: ";
+    string p; getline(cin,p);
+    cout << "Key: ";
+    string k; getline(cin,k);
+    string e = encryptVigenere(p,k);
+    cout << "Encrypted: " << e << "\n";
+    cout << "Decrypted: " << decryptVigenere(e,k) << "\n";
+    return 0;
+}
+
+<img width="522" height="206" alt="image" src="https://github.com/user-attachments/assets/a8a41074-d89d-4249-b1ea-cd2d3535481b" />
 
 # Chương trình 
 <img width="681" height="370" alt="image" src="https://github.com/user-attachments/assets/453e5239-412f-4ede-8f8d-c95f352a94a8" />
@@ -178,6 +341,112 @@ Phân tích tần suất digraph (cặp chữ).
 Phương pháp Friedman/Kasiski mở rộng cho digraph.
 Tấn công chọn bản rõ/bản mã.
 So với Caesar, Affine, Vigenère, Playfair mạnh hơn nhưng vẫn không đủ an toàn hiện đại.
+# Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
+// playfair.cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+string preprocess(const string &s){
+    string r;
+    for(char c: s) if(isalpha((unsigned char)c)) r+= toupper(c);
+    // replace J with I
+    for(auto &c: r) if(c=='J') c='I';
+    return r;
+}
+
+vector<vector<char>> buildSquare(const string &key){
+    string k = preprocess(key);
+    vector<bool> used(26,false);
+    used['J'-'A'] = true; // optional: skip J
+    string sequence;
+    for(char c: k) if(!used[c-'A']) { sequence += c; used[c-'A']=true; }
+    for(char c='A'; c<='Z'; ++c) if(!used[c-'A']) sequence += c;
+    vector<vector<char>> sq(5, vector<char>(5));
+    for(int i=0;i<25;i++) sq[i/5][i%5] = sequence[i];
+    return sq;
+}
+
+pair<int,int> findPos(const vector<vector<char>> &sq, char ch){
+    for(int i=0;i<5;i++) for(int j=0;j<5;j++) if(sq[i][j]==ch) return {i,j};
+    return {-1,-1};
+}
+
+string prepareDigraphs(const string &plain){
+    string p = preprocess(plain);
+    string out;
+    for(int i=0;i<(int)p.size();){
+        char a = p[i];
+        char b = (i+1 < (int)p.size()) ? p[i+1] : 'X';
+        if(a==b){
+            out += a;
+            out += 'X';
+            i++;
+        } else {
+            out += a;
+            out += b;
+            i+=2;
+        }
+    }
+    if(out.size()%2==1) out += 'X';
+    return out;
+}
+
+string encryptPlayfair(const string &plain, const string &key){
+    auto sq = buildSquare(key);
+    string dig = prepareDigraphs(plain);
+    string out;
+    for(int i=0;i<dig.size();i+=2){
+        auto p1 = findPos(sq, dig[i]);
+        auto p2 = findPos(sq, dig[i+1]);
+        if(p1.first==p2.first){
+            // same row -> shift right
+            out += sq[p1.first][(p1.second+1)%5];
+            out += sq[p2.first][(p2.second+1)%5];
+        } else if(p1.second==p2.second){
+            // same col -> shift down
+            out += sq[(p1.first+1)%5][p1.second];
+            out += sq[(p2.first+1)%5][p2.second];
+        } else {
+            out += sq[p1.first][p2.second];
+            out += sq[p2.first][p1.second];
+        }
+    }
+    return out;
+}
+
+string decryptPlayfair(const string &cipher, const string &key){
+    auto sq = buildSquare(key);
+    string out;
+    for(int i=0;i<cipher.size(); i+=2){
+        auto p1 = findPos(sq, cipher[i]);
+        auto p2 = findPos(sq, cipher[i+1]);
+        if(p1.first==p2.first){
+            out += sq[p1.first][(p1.second+4)%5];
+            out += sq[p2.first][(p2.second+4)%5];
+        } else if(p1.second==p2.second){
+            out += sq[(p1.first+4)%5][p1.second];
+            out += sq[(p2.first+4)%5][p2.second];
+        } else {
+            out += sq[p1.first][p2.second];
+            out += sq[p2.first][p1.second];
+        }
+    }
+    return out;
+}
+
+int main(){
+    cout << "Playfair Cipher\nPlaintext: ";
+    string p; getline(cin,p);
+    cout << "Keyword: ";
+    string k; getline(cin,k);
+    string e = encryptPlayfair(p,k);
+    cout << "Encrypted: " << e << "\n";
+    cout << "Decrypted (raw): " << decryptPlayfair(e,k) << "\n";
+
+    return 0;
+}
+
+<img width="547" height="209" alt="image" src="https://github.com/user-attachments/assets/fcf91901-e8f8-4d55-8c8a-bad9b091e234" />
 
 # Chương trình 
 
