@@ -1,5 +1,7 @@
 # BAI_TAP_VN_01
+
 ## Tên gọi là Mã Caesar. 
+
 # Thuật toán mã hoá
 Mỗi chữ cái trong bản rõ được dịch chuyển k vị trí trong bảng chữ cái (A–Z).
 Công thức (với chữ cái đã đổi sang số 0–25):
@@ -7,6 +9,7 @@ C=(P+k)mod26
 P: số của ký tự gốc.
 k: khóa (số dịch chuyển, 0–25).
 C: số của ký tự đã mã hoá.
+
 ## Thuật toán giải mã 
 <img width="667" height="102" alt="image" src="https://github.com/user-attachments/assets/12a048cb-3b15-4435-a5f0-ad814625bf5f" />
 ## Không Gian Khoá 
