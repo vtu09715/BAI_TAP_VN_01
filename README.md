@@ -1,5 +1,5 @@
 # BAI_TAP_VN_01
-# Tên gọi là Mã Caesar. 
+## Tên gọi là Mã Caesar. 
 # Thuật toán mã hoá
 Mỗi chữ cái trong bản rõ được dịch chuyển k vị trí trong bảng chữ cái (A–Z).
 Công thức (với chữ cái đã đổi sang số 0–25):
@@ -19,9 +19,51 @@ Giải mã bản mã với từng k.
 Đọc ra kết quả; bản rõ đúng sẽ xuất hiện ngay.
 Ngoài ra:
 Phân tích tần suất: Trong tiếng Anh, chữ E thường xuất hiện nhiều nhất. So sánh tần suất ký tự của bản mã với bảng tần suất ngôn ngữ để suy ra k.
+# Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
+// caesar.cpp
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+string normalize(const string &s){
+    string r;
+    for(char c: s){
+        if(isalpha((unsigned char)c)) r += toupper(c);
+    }
+    return r;
+}
+
+string encryptCaesar(const string &plain, int k){
+    string p = normalize(plain);
+    string out;
+    for(char c: p){
+        out += char((c - 'A' + k) % 26 + 'A');
+    }
+    return out;
+}
+
+string decryptCaesar(const string &cipher, int k){
+    return encryptCaesar(cipher, (26 - (k%26))%26);
+}
+
+int main(){
+    cout << "Caesar Cipher\n";
+    cout << "Nhập plaintext: ";
+    string s; getline(cin, s);
+    cout << "Khóa k (0-25): ";
+    int k; cin >> k;
+    string enc = encryptCaesar(s, k);
+    cout << "Encrypted: " << enc << "\n";
+    cout << "Decrypted: " << decryptCaesar(enc, k) << "\n";
+    return 0;
+}
+<img width="512" height="222" alt="image" src="https://github.com/user-attachments/assets/b84d872e-d7f2-49a4-86b2-94e736c3f94d" />
+
 # Chương trình.
 <img width="745" height="390" alt="image" src="https://github.com/user-attachments/assets/b7edfc1d-7fab-4432-af65-dec326c27230" />
-# Tên gọi là Mã Affine
+
+## Tên gọi là Mã Affine
 # Thuật toán mã hoá 
 C=(a×P+b)mod26
 P: số của ký tự gốc (0–25)
@@ -37,6 +79,9 @@ Số giá trị b: 0–25 ⇒ 26 giá trị.
 # Cách phá khoá ( không cần khoá )
 Brute force: Thử 312 cặp (a,b) ⇒ dễ dàng với máy tính.
 Phân tích tần suất: Giống Caesar, dựa vào tần suất chữ cái trong ngôn ngữ.
+
+# Cài đặt thuật toán mã hoá và giải mã bằng code C++ và bằng html+css+javascript
+
 # chương trình 
 <img width="884" height="446" alt="image" src="https://github.com/user-attachments/assets/dbbadb1c-b7f4-4ec1-9b73-011fa997535a" />
 Chọn a = 5, b = 8
